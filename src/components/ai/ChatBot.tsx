@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot, User, Minimize2 } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, Minimize2, ChefHat } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
 interface Message {
@@ -85,16 +85,16 @@ export function ChatBot() {
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                        className="w-[350px] h-[500px] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+                        className="w-[90vw] sm:w-[320px] h-[450px] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
                     >
                         {/* Header */}
-                        <div className="p-4 bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-between">
+                        <div className="p-3 bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                                     <Bot className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold">Mì-Bot Tư Vấn</h3>
+                                    <h3 className="font-bold text-sm">Mì-Bot Tư Vấn</h3>
                                     <span className="text-xs text-white/80 flex items-center gap-1">
                                         <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                                         Online
@@ -102,6 +102,13 @@ export function ChatBot() {
                                 </div>
                             </div>
                             <div className="flex gap-1">
+                                <a
+                                    href="/fridge-scanner"
+                                    title="Vision Chef"
+                                    className="p-1.5 hover:bg-white/20 rounded-lg transition-colors flex items-center justify-center"
+                                >
+                                    <ChefHat className="w-4 h-4" />
+                                </a>
                                 <button
                                     onClick={() => setIsMinimized(true)}
                                     className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
@@ -127,8 +134,8 @@ export function ChatBot() {
                                 >
                                     <div
                                         className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === "user"
-                                                ? "bg-secondary text-white"
-                                                : "bg-primary text-white"
+                                            ? "bg-secondary text-white"
+                                            : "bg-primary text-white"
                                             }`}
                                     >
                                         {msg.role === "user" ? (
@@ -139,8 +146,8 @@ export function ChatBot() {
                                     </div>
                                     <div
                                         className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.role === "user"
-                                                ? "bg-secondary text-white rounded-tr-none"
-                                                : "bg-card border border-border shadow-sm rounded-tl-none"
+                                            ? "bg-secondary text-white rounded-tr-none"
+                                            : "bg-card border border-border shadow-sm rounded-tl-none"
                                             }`}
                                     >
                                         <p className="whitespace-pre-wrap">{msg.parts}</p>

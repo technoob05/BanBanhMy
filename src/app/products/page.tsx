@@ -6,6 +6,8 @@ import { Search, Filter, SlidersHorizontal, X, ChevronDown } from "lucide-react"
 import { ProductCard } from "@/components/features/ProductCard";
 import { products, categories } from "@/lib/data";
 
+import { FallingEffect } from "@/components/ui/FallingEffect";
+
 export default function ProductsPage() {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +27,7 @@ export default function ProductsPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+            <FallingEffect keyword={searchQuery} />
             <div className="container pt-32 pb-16">
                 {/* Header */}
                 <motion.div
@@ -92,8 +95,8 @@ export default function ProductsPage() {
                                         key={cat.id}
                                         onClick={() => setSelectedCategory(cat.id)}
                                         className={`w-full text-left px-4 py-3 rounded-xl transition-all font-semibold ${selectedCategory === cat.id
-                                                ? "bg-gray-900 text-white shadow-lg scale-105"
-                                                : "hover:bg-gray-50 text-gray-700"
+                                            ? "bg-gray-900 text-white shadow-lg scale-105"
+                                            : "hover:bg-gray-50 text-gray-700"
                                             }`}
                                     >
                                         {cat.name}
