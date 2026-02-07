@@ -43,7 +43,7 @@ npm install
 File `.env.local` đã được tạo sẵn với **Google Gemini API Key**.
 
 ```env
-NEXT_PUBLIC_GEMINI_API_KEY=AIzaSyBy8PEjQTIAxHVemYGvEw5qYjDIlHoO3-A
+NEXT_PUBLIC_GEMINI_API_KEY=YOUR_API_KEY_HERE
 ```
 
 *Lưu ý: API Key này được lấy từ danh sách key "Chis". Bạn có thể thay đổi trong file `apikey.md` nếu cần.*
