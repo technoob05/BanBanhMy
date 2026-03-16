@@ -11,7 +11,7 @@ import { FallingEffect } from "@/components/ui/FallingEffect";
 export default function ProductsPage() {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");
-    const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
+    const [priceRange, setPriceRange] = useState<[number, number]>([0, 200000]);
     const [showFilters, setShowFilters] = useState(false);
 
     const filteredProducts = useMemo(() => {
@@ -42,7 +42,7 @@ export default function ProductsPage() {
                         Thực Đơn <span className="text-[#C8956C]">Mì Ngon</span>
                     </h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Khám phá hơn 50+ hương vị mì đa dạng từ khắp nơi trên thế giới
+                        Khám phá 3 hương vị mì đặc trưng Bắc – Trung – Nam với các phiên bản gói lẻ và combo tiết kiệm
                     </p>
                 </motion.div>
 
@@ -120,13 +120,13 @@ export default function ProductsPage() {
                                 <input
                                     type="range"
                                     min="0"
-                                    max="50000"
-                                    step="1000"
+                                    max="200000"
+                                    step="5000"
                                     value={priceRange[1]}
                                     onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
                                     className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-[#C8956C]"
                                     style={{
-                                        background: `linear-gradient(to right, #C8956C 0%, #C8956C ${(priceRange[1] / 50000) * 100}%, #E5E7EB ${(priceRange[1] / 50000) * 100}%, #E5E7EB 100%)`
+                                        background: `linear-gradient(to right, #C8956C 0%, #C8956C ${(priceRange[1] / 200000) * 100}%, #E5E7EB ${(priceRange[1] / 200000) * 100}%, #E5E7EB 100%)`
                                     }}
                                 />
                                 <div className="flex justify-between items-center">
@@ -139,7 +139,7 @@ export default function ProductsPage() {
                         </motion.div>
 
                         {/* Active Filters Summary */}
-                        {(selectedCategory !== "all" || searchQuery || priceRange[1] < 50000) && (
+                        {(selectedCategory !== "all" || searchQuery || priceRange[1] < 200000) && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export default function ProductsPage() {
                                         onClick={() => {
                                             setSearchQuery("");
                                             setSelectedCategory("all");
-                                            setPriceRange([0, 50000]);
+                                            setPriceRange([0, 200000]);
                                         }}
                                         className="text-xs font-bold text-blue-600 hover:text-blue-800 underline"
                                     >
@@ -161,7 +161,7 @@ export default function ProductsPage() {
                                 <div className="space-y-2 text-sm text-blue-700">
                                     {selectedCategory !== "all" && <div>• Danh mục: <span className="font-semibold">{categories.find(c => c.id === selectedCategory)?.name}</span></div>}
                                     {searchQuery && <div>• Tìm kiếm: <span className="font-semibold">&quot;{searchQuery}&quot;</span></div>}
-                                    {priceRange[1] < 50000 && <div>• Giá tối đa: <span className="font-semibold">{priceRange[1].toLocaleString()}đ</span></div>}
+                                    {priceRange[1] < 200000 && <div>• Giá tối đa: <span className="font-semibold">{priceRange[1].toLocaleString()}đ</span></div>}
                                 </div>
                             </motion.div>
                         )}
@@ -216,7 +216,7 @@ export default function ProductsPage() {
                                         onClick={() => {
                                             setSearchQuery("");
                                             setSelectedCategory("all");
-                                            setPriceRange([0, 50000]);
+                                            setPriceRange([0, 200000]);
                                         }}
                                         className="px-8 py-3 bg-gray-900 text-white rounded-full font-bold hover:bg-gray-800 transition-all shadow-lg hover:scale-105"
                                     >

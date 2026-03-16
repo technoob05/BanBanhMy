@@ -2,11 +2,13 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import {
     Menu, X, Search, ShoppingCart, User, ChefHat, Home, Package, BookOpen, Info, Mail
 } from "lucide-react";
 import { useCartStore } from "@/lib/store";
+import { LoginModal } from "../features/LoginModal";
 
 const navLinks = [
     { href: "/", label: "Trang Chủ", icon: Home },
@@ -19,6 +21,7 @@ const navLinks = [
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
     const cartItems = useCartStore((state) => state.items);
     const [scrolled, setScrolled] = useState(false);
 
@@ -32,7 +35,7 @@ export function Header() {
 
     // Lock body scroll when menu is open
     useEffect(() => {
-        if (isOpen) {
+        if (isOpen || isLoginOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
@@ -40,9 +43,10 @@ export function Header() {
         return () => {
             document.body.style.overflow = "unset";
         };
-    }, [isOpen]);
+    }, [isOpen, isLoginOpen]);
 
     return (
+        <>
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
                 ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100"
@@ -52,16 +56,16 @@ export function Header() {
             <div className="container px-4 md:px-6 flex items-center justify-between h-20">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3 group relative z-50">
-                    <div className={`p-2.5 rounded-xl transition-all duration-300 ${scrolled ? "bg-gray-900" : "bg-gray-900"
+                    <div className={`p-0 overflow-hidden rounded-xl transition-all duration-300 ${scrolled ? "bg-white" : "bg-white"
                         }`}>
-                        <ChefHat className="w-6 h-6 text-white" />
+                        <Image src="/images/noodliverse/Logo.jpg" alt="Noodliverse Logo" width={48} height={48} className="object-cover" />
                     </div>
                     <div className="flex flex-col -space-y-1">
                         <span className="text-2xl font-black tracking-tight text-gray-900">
-                            Mì<span className="text-[#C8956C]">Mart</span>
+                            Noodli<span className="text-[#C8956C]">verse</span>
                         </span>
                         <span className="text-[10px] text-gray-500 font-semibold tracking-wider uppercase">
-                            Premium Noodles
+                            Hương Vị Mì Ba Miền
                         </span>
                     </div>
                 </Link>
@@ -92,6 +96,17 @@ export function Header() {
                         aria-label="Search"
                     >
                         <Search className="w-5 h-5" />
+                    </button>
+
+                    <button
+                        onClick={() => setIsLoginOpen(true)}
+                        className={`p-2.5 rounded-xl transition-all ${scrolled
+                            ? "hover:bg-gray-100 text-gray-700"
+                            : "hover:bg-white/80 text-gray-800"
+                            }`}
+                        aria-label="User Profile"
+                    >
+                        <User className="w-5 h-5" />
                     </button>
 
                     <Link
@@ -136,11 +151,11 @@ export function Header() {
                         {/* Mobile Header */}
                         <div className="flex items-center justify-between p-4 border-b border-gray-100">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-gray-900 rounded-xl">
-                                    <ChefHat className="w-6 h-6 text-white" />
+                                <div className="p-0 overflow-hidden bg-white rounded-xl">
+                                    <Image src="/images/noodliverse/Logo.jpg" alt="Noodliverse Logo" width={40} height={40} />
                                 </div>
                                 <span className="text-2xl font-black text-gray-900">
-                                    Mì<span className="text-[#C8956C]">Mart</span>
+                                    Noodli<span className="text-[#C8956C]">verse</span>
                                 </span>
                             </div>
                             <button
@@ -189,5 +204,11 @@ export function Header() {
                 )}
             </AnimatePresence>
         </header>
+
+        <LoginModal 
+            isOpen={isLoginOpen} 
+            onClose={() => setIsLoginOpen(false)} 
+        />
+        </>
     );
 }

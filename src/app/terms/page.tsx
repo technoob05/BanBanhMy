@@ -3,7 +3,7 @@ export default function TermsPage() {
         <div className="container py-28 max-w-4xl">
             <h1 className="text-4xl font-bold mb-8">Điều Khoản Sử Dụng</h1>
             <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
-                <p>Chào mừng bạn đến với MìMart. Khi truy cập website, bạn đồng ý với các điều khoản sau:</p>
+                <p>Chào mừng bạn đến với Noodliverse. Khi truy cập website, bạn đồng ý với các điều khoản sau:</p>
 
                 <h3 className="text-xl font-bold text-gray-900 mt-6">1. Đặt hàng</h3>
                 <p>Bạn phải đủ 18 tuổi hoặc có sự giám sát của phụ huynh khi đặt hàng.</p>

@@ -41,47 +41,49 @@ export default function AboutPage() {
             {/* Grid */}
             <section className="py-20 container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-6">
-                        <h2 className="text-4xl font-bold font-[family-name:var(--font-outfit)]">Sứ Mệnh Của Chúng Tôi</h2>
-                        <p className="text-lg text-muted-foreground leading-relaxed">
-                            MìMart ra đời với mong muốn định nghĩa lại &quot;mì ăn liền&quot;. Không chỉ là món ăn nhanh, chúng tôi tin rằng mỗi gói mì đều mang trong mình một câu chuyện văn hóa ẩm thực riêng biệt.
-                        </p>
-                        <ul className="space-y-4">
-                            {[
-                                "Cung cấp 100+ loại mì tuyển chọn",
-                                "Đảm bảo nguồn gốc xuất xứ rõ ràng",
-                                "Dịch vụ giao hàng siêu tốc 30 phút",
-                                "Hỗ trợ tư vấn món ăn từ Chuyên gia & AI"
-                            ].map((item, i) => (
-                                <li key={i} className="flex items-center gap-3 font-medium">
-                                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
+            <div className="space-y-6">
+                <h2 className="text-4xl font-bold font-[family-name:var(--font-outfit)]">Sứ Mệnh Của Chúng Tôi</h2>
+                <div className="space-y-4">
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                        Noodliverse ra đời với mong muốn mang hương vị ẩm thực Việt Nam vào từng gói mì. 
+                        Chúng tôi tin rằng mì ăn liền không chỉ là một bữa ăn nhanh, mà còn có thể trở thành trải nghiệm khám phá văn hóa ẩm thực ba miền Bắc – Trung – Nam.
+                    </p>
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                        Mỗi sản phẩm được phát triển với cảm hứng từ hương vị vùng miền, giúp bạn thưởng thức tinh thần ẩm thực Việt Nam một cách tiện lợi, hiện đại và sáng tạo.
+                    </p>
+                </div>
+
+                <div className="space-y-4 pt-4">
+                    <h3 className="text-xl font-bold">Cam kết của chúng tôi</h3>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {[
+                            "Đại diện 3 hương vị mì đặc trưng Bắc – Trung – Nam",
+                            "Hương vị được phát triển theo phong cách ẩm thực Việt hiện đại",
+                            "Nguyên liệu chọn lọc, đảm bảo chất lượng và an toàn thực phẩm",
+                            "Trải nghiệm mì mới mẻ dành cho thế hệ trẻ và gia đình"
+                        ].map((item, i) => (
+                            <li key={i} className="flex items-start gap-3 text-sm font-medium">
+                                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                    { label: "Bắc – Trung – Nam trong một thương hiệu mì.", title: "3 Hương Vị Đặc Trưng", icon: History },
+                    { label: "Mang tinh thần ẩm thực Việt vào mì ăn liền.", title: "1 Ý Tưởng Ẩm Thực Việt", icon: Award },
+                    { label: "Từ các hoạt động dùng thử và cộng đồng.", title: "100K+ Trải Nghiệm Khách Hàng", icon: Users },
+                    { label: "Đánh giá tích cực từ người trải nghiệm.", title: "98% Khách Hàng Hài Lòng", icon: CheckCircle2 }
+                ].map((stat, i) => (
+                    <div key={i} className="bg-muted/50 p-6 rounded-3xl space-y-3 hover:bg-muted transition-colors">
+                        <stat.icon className="w-8 h-8 text-primary" />
+                        <h4 className="font-bold text-lg leading-tight">{stat.title}</h4>
+                        <p className="text-sm text-muted-foreground">{stat.label}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-4 mt-8">
-                            <div className="bg-muted aspect-square rounded-2xl flex items-center justify-center p-6 text-center">
-                                <History className="w-10 h-10 text-primary mb-2 mx-auto" />
-                                <h4 className="font-bold">10 Năm <br />Phát Triển</h4>
-                            </div>
-                            <div className="bg-muted aspect-square rounded-2xl flex items-center justify-center p-6 text-center">
-                                <Users className="w-10 h-10 text-primary mb-2 mx-auto" />
-                                <h4 className="font-bold">1M+ <br />Khách Hàng</h4>
-                            </div>
-                        </div>
-                        <div className="space-y-4">
-                            <div className="bg-muted aspect-square rounded-2xl flex items-center justify-center p-6 text-center">
-                                <Award className="w-10 h-10 text-primary mb-2 mx-auto" />
-                                <h4 className="font-bold">Top 1 <br />Thương Hiệu</h4>
-                            </div>
-                            <div className="bg-muted aspect-square rounded-2xl flex items-center justify-center p-6 text-center">
-                                <CheckCircle2 className="w-10 h-10 text-primary mb-2 mx-auto" />
-                                <h4 className="font-bold">99% <br />Hài Lòng</h4>
-                            </div>
-                        </div>
-                    </div>
+                ))}
+            </div>
                 </div>
             </section>
         </div>

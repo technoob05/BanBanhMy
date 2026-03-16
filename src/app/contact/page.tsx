@@ -12,7 +12,7 @@ export default function ContactPage() {
                     <div className="bg-gradient-to-br from-primary to-secondary p-12 text-white flex flex-col justify-between">
                         <div>
                             <h1 className="text-4xl font-bold mb-6 font-[family-name:var(--font-outfit)]">
-                                Liên Hệ Với MìMart
+                                Liên Hệ Với Noodliverse
                             </h1>
                             <p className="text-white/80 text-lg mb-12">
                                 Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn.
@@ -36,7 +36,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg">Email</h3>
-                                        <p className="text-white/80">support@mimart.vn</p>
+                                        <p className="text-white/80">support@noodliverse.vn</p>
                                     </div>
                                 </div>
 

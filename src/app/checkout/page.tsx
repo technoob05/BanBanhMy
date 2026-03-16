@@ -136,7 +136,7 @@ export default function CheckoutPage() {
 
                             <div className="space-y-3">
                                 <label className="flex items-center gap-4 p-4 border border-amber-200 bg-amber-50/50 rounded-xl cursor-pointer ring-2 ring-amber-500 ring-offset-2">
-                                    <input type="radio" name="payment" defaultChecked className="w-5 h-5 text-amber-600 accent-amber-600" />
+                                    <input type="radio" name="payment" value="cod" defaultChecked className="w-5 h-5 text-amber-600 accent-amber-600" />
                                     <div className="p-2 bg-white rounded-lg shadow-sm">
                                         <Truck className="w-6 h-6 text-green-600" />
                                     </div>
@@ -146,14 +146,36 @@ export default function CheckoutPage() {
                                     </div>
                                 </label>
 
-                                <label className="flex items-center gap-4 p-4 border border-stone-200 rounded-xl cursor-not-allowed opacity-60">
-                                    <input type="radio" name="payment" disabled className="w-5 h-5" />
+                                <label className="flex items-center gap-4 p-4 border border-stone-200 rounded-xl cursor-pointer hover:bg-stone-50 transition-colors">
+                                    <input type="radio" name="payment" value="momo" className="w-5 h-5 text-amber-600 accent-amber-600" />
+                                    <div className="p-2 bg-white rounded-lg shadow-sm">
+                                        <div className="w-6 h-6 bg-[#A50064] text-white flex items-center justify-center text-[8px] font-bold rounded">MOMO</div>
+                                    </div>
+                                    <div>
+                                        <span className="font-bold block text-stone-900">Ví MoMo</span>
+                                        <span className="text-sm text-stone-500">Thanh toán qua ứng dụng MoMo</span>
+                                    </div>
+                                </label>
+
+                                <label className="flex items-center gap-4 p-4 border border-stone-200 rounded-xl cursor-pointer hover:bg-stone-50 transition-colors">
+                                    <input type="radio" name="payment" value="vnpay" className="w-5 h-5 text-amber-600 accent-amber-600" />
+                                    <div className="p-2 bg-white rounded-lg shadow-sm">
+                                        <div className="w-6 h-6 bg-[#005BAA] text-white flex items-center justify-center text-[7px] font-bold rounded">VNPAY</div>
+                                    </div>
+                                    <div>
+                                        <span className="font-bold block text-stone-900">VNPAY</span>
+                                        <span className="text-sm text-stone-500">Quét mã QR qua ứng dụng ngân hàng</span>
+                                    </div>
+                                </label>
+
+                                <label className="flex items-center gap-4 p-4 border border-stone-200 rounded-xl cursor-pointer hover:bg-stone-50 transition-colors">
+                                    <input type="radio" name="payment" value="card" className="w-5 h-5 text-amber-600 accent-amber-600" />
                                     <div className="p-2 bg-white rounded-lg shadow-sm">
                                         <CreditCard className="w-6 h-6 text-blue-600" />
                                     </div>
                                     <div>
-                                        <span className="font-bold block text-stone-900">Chuyển khoản (Bảo trì)</span>
-                                        <span className="text-sm text-stone-500">Hệ thống đang nâng cấp</span>
+                                        <span className="font-bold block text-stone-900">Thẻ tín dụng / Ghi nợ</span>
+                                        <span className="text-sm text-stone-500">Visa, Mastercard, JCB</span>
                                     </div>
                                 </label>
                             </div>

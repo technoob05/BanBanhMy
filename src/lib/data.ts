@@ -2,100 +2,125 @@ export const products = [
     // --- Mì Gói (Pack Noodles) ---
     {
         id: "p1",
-        name: "Mì Tôm Chua Cay Truyền Thống",
-        description: "Hương vị quốc linh hồn của người Việt, nước súp chua cay đậm đà khó quên.",
-        price: 4500,
-        image: "https://images.unsplash.com/photo-1591814468924-caf88d1232e1?q=80&w=1000&auto=format&fit=crop", // Changed to a more stable noodle shot
+        name: "Mì Gà Thanh",
+        description: "Mì Gà Thanh mang hương vị nhẹ nhàng và dễ ăn, lấy cảm hứng từ phong cách ẩm thực miền Bắc. Nước súp trong, thanh vị gà tự nhiên kết hợp cùng sợi mì mềm giúp tạo nên một bữa ăn nhanh nhưng vẫn đầy đủ hương vị.",
+        price: 11900,
+        image: "/images/noodliverse/mi-ga-thanh-le.png",
         category: "mi-goi",
-        rating: 4.9,
-        reviews: 850,
-        spicyLevel: 2,
+        rating: 4.8,
+        reviews: 1200,
+        spicyLevel: 0,
+        highlights: [
+            "Hương vị gà thanh nhẹ, không ngấy",
+            "Sợi mì mảnh, dễ ăn",
+            "Phù hợp cho mọi thời điểm trong ngày",
+            "Lựa chọn lý tưởng cho người thích vị nhẹ"
+        ]
     },
     {
         id: "p2",
-        name: "Mì Khoai Tây Sốt Bò Hầm",
-        description: "Sợi mì làm từ khoai tây dai mướt, kết hợp sốt bò hầm rượu vang thượng hạng.",
-        price: 8500,
-        image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=1000&auto=format&fit=crop",
+        name: "Mì Bò Cay",
+        description: "Mì Bò Cay mang hương vị đậm đà đặc trưng của miền Trung, với nước súp bò cay nồng kích thích vị giác. Sự kết hợp giữa vị bò thơm và độ cay vừa phải tạo nên trải nghiệm mì đầy năng lượng.",
+        price: 13900,
+        image: "/images/noodliverse/mi-bo-cay-le.png",
         category: "mi-goi",
-        rating: 4.7,
-        reviews: 320,
-        spicyLevel: 1,
+        rating: 4.9,
+        reviews: 2500,
+        spicyLevel: 2,
+        highlights: [
+            "Hương vị bò đậm đà",
+            "Cay nhẹ kích thích vị giác",
+            "Phù hợp với người thích ăn cay",
+            "Trải nghiệm mì mạnh mẽ và hấp dẫn"
+        ]
     },
     {
         id: "p3",
-        name: "Mì Hải Sản Cay Cấp Độ 7",
-        description: "Thách thức bản lĩnh với vị cay bùng nổ, hương vị hải sản tươi sống.",
-        price: 13000,
-        image: "https://images.unsplash.com/photo-1569562211093-4ed0d0758f12?q=80&w=1000&auto=format&fit=crop",
+        name: "Mì Kem Sữa Dừa",
+        description: "Mì Kem Sữa Dừa mang phong cách ẩm thực miền Nam với vị béo nhẹ từ sữa dừa. Hương vị ngọt dịu và thơm béo tạo nên trải nghiệm mì mới lạ và độc đáo.",
+        price: 15900,
+        image: "/images/noodliverse/mi-kem-sua-dua-le.png",
         category: "mi-goi",
-        rating: 4.8,
-        reviews: 540,
-        spicyLevel: 7,
+        rating: 4.7,
+        reviews: 1800,
+        spicyLevel: 0,
+        highlights: [
+            "Hương vị sữa dừa thơm béo",
+            "Vị ngọt nhẹ dễ ăn",
+            "Phong cách mì sáng tạo và khác biệt",
+            "Phù hợp cho người thích vị béo nhẹ"
+        ]
     },
-    // --- Mì Ly (Cup Noodles) ---
+    // --- Com Bo ---
     {
         id: "p4",
-        name: "Mì Ly Lẩu Thái Tomyum",
-        description: "Tiện lợi mang đi, hương vị lẩu Thái chuẩn vị với tôm thật sấy khô.",
-        price: 15000,
-        image: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1000&auto=format&fit=crop",
-        category: "mi-ly",
-        rating: 4.6,
-        reviews: 210,
-        spicyLevel: 3,
+        name: "Pack of 10 Mì Gà Thanh",
+        description: "Combo 10 gói Mì Gà Thanh giúp bạn luôn sẵn sàng cho những bữa ăn nhanh và tiện lợi. Phù hợp cho gia đình hoặc sinh viên dự trữ trong nhà.",
+        price: 115000,
+        image: "/images/noodliverse/mi-ga-thanh-combo.png",
+        category: "combo",
+        rating: 4.9,
+        reviews: 500,
+        spicyLevel: 0,
+        highlights: [
+            "Tiết kiệm hơn so với mua lẻ",
+            "Phù hợp cho gia đình hoặc dự trữ",
+            "Dễ dàng sử dụng bất cứ lúc nào"
+        ]
     },
     {
         id: "p5",
-        name: "Mì Ly Bò Hầm Tiêu Xanh",
-        description: "Thơm nồng tiêu xanh, thịt bò thật hầm mềm, bữa sáng hoàn hảo.",
-        price: 16000,
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1000&auto=format&fit=crop",
-        category: "mi-ly",
-        rating: 4.5,
-        reviews: 180,
+        name: "Pack of 10 Mì Bò Cay",
+        description: "Combo 10 gói Mì Bò Cay dành cho những ai yêu thích vị cay đậm đà. Lựa chọn hoàn hảo để thưởng thức mì cay bất cứ lúc nào.",
+        price: 135000,
+        image: "/images/noodliverse/mi-bo-cay-combo.png",
+        category: "combo",
+        rating: 4.9,
+        reviews: 650,
         spicyLevel: 2,
+        highlights: [
+            "Hương vị cay đậm đặc trưng",
+            "Tiết kiệm khi mua combo",
+            "Phù hợp cho những người yêu thích vị cay"
+        ]
     },
-    // --- Mì Hàn Quốc (Korean Style) ---
     {
         id: "p6",
-        name: "Mì Trộn Tương Đen Hoàng Gia",
-        description: "Sốt tương đen Jajangmyeon chuẩn Hàn, sợi mì to dai cực đã.",
-        price: 22000,
-        image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=1000&auto=format&fit=crop",
-        category: "mi-han-quoc",
-        rating: 4.9,
+        name: "Pack of 10 Mì Kem Sữa Dừa",
+        description: "Combo 10 gói Mì Kem Sữa Dừa giúp bạn tận hưởng hương vị béo nhẹ độc đáo mỗi ngày. Một lựa chọn mới lạ cho những ai muốn trải nghiệm mì theo phong cách khác biệt.",
+        price: 155000,
+        image: "/images/noodliverse/mi-kem-sua-dua-combo.png",
+        category: "combo",
+        rating: 4.8,
         reviews: 420,
-        spicyLevel: 1,
+        spicyLevel: 0,
+        highlights: [
+            "Hương vị sáng tạo và độc đáo",
+            "Tiết kiệm hơn so với mua lẻ",
+            "Phù hợp để chia sẻ với gia đình và bạn bè"
+        ]
     },
     {
         id: "p7",
-        name: "Mì Cay Phô Mai Tan Chảy",
-        description: "Sự kết hợp béo ngậy của phô mai và vị cay nồng nàn.",
-        price: 24000,
-        image: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1000&auto=format&fit=crop",
-        category: "mi-han-quoc",
-        rating: 4.8,
-        reviews: 300,
-        spicyLevel: 4,
-    },
-    {
-        id: "p8",
-        name: "Mì Trộn Trứng Muối",
-        description: "Vị trứng muối mặn mà, béo ngậy, trend mới của giới trẻ.",
-        price: 18000,
-        image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=1000&auto=format&fit=crop",
-        category: "mi-tron",
-        rating: 4.7,
-        reviews: 150,
+        name: "Pack of 12 Mixture",
+        description: "Pack of 12 Mixture là combo đặc biệt kết hợp cả 3 hương vị mì Bắc – Trung – Nam của Noodliverse. Đây là lựa chọn hoàn hảo cho những ai muốn trải nghiệm đầy đủ các hương vị của thương hiệu.",
+        price: 165000,
+        image: "/images/noodliverse/mix-3-loai.png",
+        category: "combo",
+        rating: 5.0,
+        reviews: 900,
         spicyLevel: 1,
+        highlights: [
+            "Trải nghiệm đầy đủ 3 hương vị",
+            "Phù hợp cho người mới thử sản phẩm",
+            "Lý tưởng để chia sẻ cùng bạn bè và gia đình"
+        ]
     },
 ];
 
 export const categories = [
     { id: "all", name: "Tất Cả" },
     { id: "mi-goi", name: "Mì Gói" },
-    { id: "mi-ly", name: "Mì Ly" },
-    { id: "mi-han-quoc", name: "Mì Hàn Quốc" },
-    { id: "mi-tron", name: "Mì Trộn" },
+    { id: "combo", name: "Combo Tiết Kiệm" },
 ];
+

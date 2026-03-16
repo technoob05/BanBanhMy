@@ -17,12 +17,12 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "MìMart - Thiên Đường Mì Gói | Mì Ly | Mì Tô",
-  description: "Cửa hàng mì trực tuyến #1 Việt Nam. Đa dạng mì gói, mì ly, mì tô từ các thương hiệu nổi tiếng. Giao hàng nhanh, giá tốt nhất!",
-  keywords: "mì gói, mì ly, mì tô, mì ăn liền, mì cay, mì hàn quốc, samyang, hảo hảo, omachi",
+  title: "Noodliverse - Hương Vị Mì Ba Miền | Bắc – Trung – Nam",
+  description: "Noodliverse mang tinh hoa ẩm thực ba miền Bắc – Trung – Nam vào từng gói mì. Trải nghiệm hương vị Việt Nam hiện đại, sáng tạo và tiện lợi.",
+  keywords: "Noodliverse, mì ba miền, mì gà thanh, mì bò cay, mì sữa dừa, mì ăn liền, ẩm thực Việt Nam",
   openGraph: {
-    title: "MìMart - Thiên Đường Mì Gói",
-    description: "Cửa hàng mì trực tuyến #1 Việt Nam",
+    title: "Noodliverse - Hương Vị Mì Ba Miền",
+    description: "Khám phá tinh hoa ẩm thực Việt qua từng tô mì",
     type: "website",
   },
 };

@@ -48,7 +48,7 @@ export default function OrderSuccessPage() {
                 </h1>
 
                 <p className="text-stone-600 text-lg mb-8 leading-relaxed">
-                    Cảm ơn bạn đã tin tưởng MìMart. Đơn hàng của bạn đang được các đầu bếp chuẩn bị và sẽ giao đến trong thời gian sớm nhất! 🍜
+                    Cảm ơn bạn đã tin tưởng Noodliverse. Đơn hàng của bạn đang được các đầu bếp chuẩn bị và sẽ giao đến trong thời gian sớm nhất! 🍜
                 </p>
 
                 <div className="space-y-3">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
     Facebook,
     Instagram,
@@ -82,21 +83,20 @@ export function Footer() {
                     {/* Brand - Wider */}
                     <div className="lg:col-span-4">
                         <Link href="/" className="inline-flex items-center gap-3 mb-6">
-                            <div className="w-12 h-12 bg-gray-800 border border-gray-700 rounded-xl flex items-center justify-center">
-                                <ChefHat className="w-7 h-7 text-white" />
+                            <div className="w-12 h-12 overflow-hidden bg-white border border-gray-700 rounded-xl flex items-center justify-center">
+                                <Image src="/images/noodliverse/Logo.jpg" alt="Noodliverse Logo" width={48} height={48} />
                             </div>
                             <div className="flex flex-col -space-y-1">
                                 <span className="text-2xl font-black">
-                                    Mì<span className="text-[#C8956C]">Mart</span>
+                                    Noodli<span className="text-[#C8956C]">verse</span>
                                 </span>
                                 <span className="text-xs text-gray-400 font-semibold tracking-wider">
-                                    PREMIUM NOODLES
+                                    HƯƠNG VỊ MÌ BA MIỀN
                                 </span>
                             </div>
                         </Link>
                         <p className="text-gray-400 mb-6 leading-relaxed">
-                            Cửa hàng mì trực tuyến #1 Việt Nam với hơn 50+ loại mì cao cấp từ khắp thế giới.
-                            Giao hàng nhanh, giá tốt nhất!
+                            Khám phá hành trình ẩm thực Việt Nam qua 3 hương vị mì đặc trưng từ Bắc – Trung – Nam.
                         </p>
                         <div className="flex gap-3">
                             {[
@@ -186,11 +186,31 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-[#C8956C]" />
-                                <a href="mailto:hello@mimart.vn" className="text-gray-400 hover:text-white transition-colors">
-                                    hello@mimart.vn
+                                <a href="mailto:support@noodliverse.vn" className="text-gray-400 hover:text-white transition-colors">
+                                    support@noodliverse.vn
                                 </a>
                             </li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* Certification and Payment Methods */}
+            <div className="border-t border-gray-800 bg-gray-900/50">
+                <div className="container py-8 flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="flex flex-wrap justify-center gap-6 opacity-70 hover:opacity-100 transition-opacity">
+                        <Image src="/images/noodliverse/Gemini_Generated_Image_6ydbgw6ydbgw6ydb.png" alt="Certification 1" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
+                        <Image src="/images/noodliverse/Gemini_Generated_Image_l5mjlll5mjlll5mj.png" alt="Certification 2" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
+                        <Image src="/images/noodliverse/Gemini_Generated_Image_gg10k3gg10k3gg10.png" alt="Certification 3" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
+                        <Image src="/images/noodliverse/Gemini_Generated_Image_so6raaso6raaso6r.png" alt="Certification 4" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Thanh Toán:</span>
+                        <div className="flex gap-3">
+                             <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">MOMO</div>
+                             <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">VNPAY</div>
+                             <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">VISA</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,7 +219,7 @@ export function Footer() {
             <div className="border-t border-gray-800">
                 <div className="container py-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-                        <p>© 2024 <span className="font-bold text-white">MìMart</span>. Tất cả quyền được bảo lưu.</p>
+                        <p>© 2024 <span className="font-bold text-white">Noodliverse</span>. Tất cả quyền được bảo lưu.</p>
                         <div className="flex gap-6">
                             <Link href="/privacy" className="hover:text-white transition-colors">
                                 Chính Sách Bảo Mật

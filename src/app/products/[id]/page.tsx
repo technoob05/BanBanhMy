@@ -7,9 +7,10 @@ import { Star, ShoppingCart, Heart, ShieldCheck, Truck } from "lucide-react";
 import { products } from "@/lib/data";
 import { useCartStore } from "@/lib/store";
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-    const product = products.find((p) => p.id === params.id);
-    const addItem = useCartStore((state) => state.addItem);
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const product = products.find((p) => p.id === id);
+    const addItem = useCartStore.getState().addItem;
     const [quantity, setQuantity] = useState(1);
 
     if (!product) {
@@ -33,13 +34,13 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                                 src={product.image}
                                 alt={product.name}
                                 fill
-                                className="object-cover"
+                                className="object-contain p-4"
                             />
                         </div>
                         <div className="grid grid-cols-4 gap-4">
                             {[1, 2, 3, 4].map((i) => (
                                 <div key={i} className="aspect-square rounded-xl bg-muted cursor-pointer hover:border-primary border-2 border-transparent transition-all overflow-hidden relative">
-                                    <Image src={product.image} alt="Thumbnail" fill className="object-cover" />
+                                    <Image src={product.image} alt="Thumbnail" fill className="object-contain p-1" />
                                 </div>
                             ))}
                         </div>
@@ -69,32 +70,45 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                                 {product.price.toLocaleString()}đ
                             </p>
 
-                            <p className="text-muted-foreground leading-relaxed text-lg">
-                                {product.description} Thưởng thức ngay hương vị tuyệt hảo, đậm đà khó quên.
-                                Sản phẩm được đóng gói kỹ lưỡng, đảm bảo vệ sinh an toàn thực phẩm.
+                            <p className="text-muted-foreground leading-relaxed text-lg mb-8">
+                                {product.description}
                             </p>
+
+                            {product.highlights && (
+                                <div className="space-y-4 mb-8">
+                                    <h3 className="font-bold text-gray-900">Điểm nổi bật</h3>
+                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        {product.highlights.map((highlight, idx) => (
+                                            <li key={idx} className="flex items-center gap-2 text-sm text-gray-600 bg-stone-50 p-3 rounded-xl border border-stone-100">
+                                                <ShieldCheck className="w-4 h-4 text-green-600 flex-shrink-0" />
+                                                {highlight}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
 
                         <div className="border-t border-border py-6 space-y-6">
                             <div className="flex items-center gap-4">
-                                <div className="flex items-center border border-border rounded-full">
+                                <div className="flex items-center border border-border rounded-full bg-white shadow-sm">
                                     <button
                                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                        className="w-12 h-12 flex items-center justify-center hover:bg-muted rounded-l-full"
+                                        className="w-12 h-12 flex items-center justify-center hover:bg-muted rounded-l-full transition-colors"
                                     >
                                         -
                                     </button>
                                     <span className="w-12 text-center font-bold">{quantity}</span>
                                     <button
                                         onClick={() => setQuantity(quantity + 1)}
-                                        className="w-12 h-12 flex items-center justify-center hover:bg-muted rounded-r-full"
+                                        className="w-12 h-12 flex items-center justify-center hover:bg-muted rounded-r-full transition-colors"
                                     >
                                         +
                                     </button>
                                 </div>
                                 <button
                                     onClick={handleAddToCart}
-                                    className="flex-1 btn-gradient py-3 rounded-full flex items-center justify-center gap-2 text-lg hover:shadow-xl"
+                                    className="flex-1 btn-primary py-3 rounded-full flex items-center justify-center gap-2 text-lg hover:shadow-xl transition-all"
                                 >
                                     <ShoppingCart className="w-5 h-5" />
                                     Thêm Vào Giỏ
@@ -105,19 +119,19 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-xl">
-                                <Truck className="w-6 h-6 text-primary" />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm mt-8">
+                            <div className="flex items-center gap-3 p-4 bg-orange-50/50 border border-orange-100 rounded-2xl">
+                                <Truck className="w-6 h-6 text-orange-600" />
                                 <div>
-                                    <p className="font-bold">Giao hàng thần tốc</p>
-                                    <p className="text-muted-foreground">Nhận hàng trong 30p</p>
+                                    <p className="font-bold">Giao hàng Nhanh</p>
+                                    <p className="text-stone-500">Nhận hàng trong 30-60 phút</p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-xl">
-                                <ShieldCheck className="w-6 h-6 text-primary" />
+                            <div className="flex items-center gap-3 p-4 bg-green-50/50 border border-green-100 rounded-2xl">
+                                <ShieldCheck className="w-6 h-6 text-green-600" />
                                 <div>
-                                    <p className="font-bold">Đảm bảo chất lượng</p>
-                                    <p className="text-muted-foreground">Chính hãng 100%</p>
+                                    <p className="font-bold">Đảm bảo Chất lượng</p>
+                                    <p className="text-stone-500">Chính hãng Noodliverse 100%</p>
                                 </div>
                             </div>
                         </div>

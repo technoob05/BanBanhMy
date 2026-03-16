@@ -7,14 +7,16 @@ import { ArrowRight, ShoppingBag, Globe, Factory, Users, Star, Award, Utensils, 
 import { products } from "@/lib/data";
 import ScrollReveal from "@/app/components/ScrollReveal";
 import NewsSection from "@/app/components/NewsSection";
+import { formatPrice } from "@/lib/utils";
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 4);
+  const featuredProducts = products.filter(p => ['p1', 'p2', 'p3', 'p7'].includes(p.id));
+  const comboProducts = products.filter(p => ['p4', 'p5', 'p6'].includes(p.id));
 
   const stats = [
-    { id: 1, number: "2+", label: "Nhà máy", icon: Factory },
-    { id: 2, number: "50+", label: "Loại Mì", icon: Utensils },
-    { id: 3, number: "15+", label: "Quốc gia", icon: Globe },
+    { id: 1, number: "3", label: "Loại mì", icon: Utensils },
+    { id: 2, number: "2", label: "Nhà máy", icon: Factory },
+    { id: 3, number: "2", label: "Quốc gia", icon: Globe },
     { id: 4, number: "2000+", label: "Nhân viên", icon: Users },
   ];
 
@@ -74,11 +76,11 @@ export default function Home() {
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-gray-900 leading-[1.1]">
               HƯƠNG VỊ<br />
-              <span className="text-[#C8956C]">ĐẲNG CẤP</span>
+              <span className="text-[#C8956C]">MÌ BA MIỀN</span>
             </h1>
 
             <p className="text-xl sm:text-2xl text-gray-600 font-semibold max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Khám phá thế giới mì gói cao cấp với hơn 50+ hương vị đặc sắc từ khắp nơi trên thế giới
+              Khám phá hành trình ẩm thực Việt Nam qua 3 hương vị mì đặc trưng từ Bắc – Trung – Nam. Chỉ với 3 lựa chọn, bạn có thể trải nghiệm tinh hoa ẩm thực ba miền trong từng tô mì.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
@@ -97,9 +99,9 @@ export default function Home() {
             {/* Mini Stats */}
             <div className="flex flex-wrap gap-6 justify-center lg:justify-start pt-6">
               {[
-                { label: "Sản phẩm", value: "50+" },
-                { label: "Đánh giá 5★", value: "10K+" },
-                { label: "Khách hàng", value: "100K+" }
+                { label: "Sản phẩm", value: "3" },
+                { label: "Đánh giá 5 sao", value: "5K+" },
+                { label: "Khách hàng", value: "50K+" }
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -230,14 +232,13 @@ export default function Home() {
               direction="left"
               className="order-2 lg:order-1 space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full font-bold text-sm">
-                <Award className="w-4 h-4" />
-                CHẤT LƯỢNG HÀNG ĐẦU
-              </div>
+              <span className="inline-block px-4 py-2 bg-[#C8956C]/10 text-[#A67C52] rounded-full font-bold text-sm">
+                BÁN CHẠY NHẤT
+              </span>
 
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight">
                 Sợi Mì Dai Ngon<br />
-                <span className="text-[#C8956C]">Chuẩn Nhật Bản</span>
+                <span className="text-[#C8956C]">Tinh Hoa Ẩm Thực</span>
               </h3>
 
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -305,7 +306,7 @@ export default function Home() {
 
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight">
                 Nước Súp Đậm Đà<br />
-                <span className="text-[#C8956C]">Cô Đặc Tinh Tuý</span>
+                <span className="text-[#C8956C]">Hương Vị Đặc Trưng</span>
               </h3>
 
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -339,9 +340,9 @@ export default function Home() {
                 SẢN PHẨM NỔI BẬT
               </span>
               <h3 className="text-3xl sm:text-4xl font-black text-gray-900">
-                Được Yêu Thích Nhất
+                Sản Phẩm Bán Chạy Nhất
               </h3>
-              <p className="text-gray-500 mt-2">Những hương vị bán chạy nhất tháng này</p>
+              <p className="text-gray-500 mt-2">Khám phá 3 hương vị mì ba miền Noodliverse</p>
             </div>
             <Link
               href="/products"
@@ -361,12 +362,12 @@ export default function Home() {
                 className="group"
               >
                 <Link href={`/products/${product.id}`}>
-                  <div className="relative aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden mb-4 shadow-sm hover:shadow-2xl transition-all duration-300">
+                  <div className="relative aspect-square bg-gray-50 rounded-2xl overflow-hidden mb-4 shadow-sm hover:shadow-2xl transition-all duration-300">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
 
@@ -397,12 +398,85 @@ export default function Home() {
 
                     <div className="flex items-center justify-between">
                       <span className="text-xl font-black text-gray-900">
-                        {product.price.toLocaleString()}đ
+                        {formatPrice(product.price)}đ
                       </span>
                       <div className="flex items-center gap-1 bg-yellow-50 px-2.5 py-1 rounded-lg">
                         <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
                         <span className="text-sm font-bold text-yellow-700">{product.rating}</span>
                       </div>
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4.5 COMBO SECTION */}
+      <section className="section-padding bg-stone-50">
+        <div className="container">
+          <ScrollReveal
+            direction="up"
+            className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12"
+          >
+            <div>
+              <span className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full font-bold text-sm mb-3">
+                COMBO TIẾT KIỆM
+              </span>
+              <h3 className="text-3xl sm:text-4xl font-black text-gray-900">
+                Túi Bự 10 Gói
+              </h3>
+              <p className="text-gray-500 mt-2">Dự trữ mì ngon cho cả gia đình với giá cực ưu đãi</p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {comboProducts.map((product, idx) => (
+              <ScrollReveal
+                key={product.id}
+                direction="up"
+                delay={idx * 0.1}
+                className="group"
+              >
+                <Link href={`/products/${product.id}`}>
+                  <div className="relative aspect-square bg-white rounded-3xl overflow-hidden mb-4 shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+
+                    {/* Badge */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="px-4 py-2 bg-orange-600 text-white text-xs font-black rounded-full shadow-lg">
+                        TIẾT KIỆM
+                      </span>
+                    </div>
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors duration-300" />
+
+                    {/* Add to Cart */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <button className="w-full bg-gray-900 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#C8956C] transition-all shadow-xl">
+                        <ShoppingBag className="w-5 h-5" />
+                        Thêm Vào Giỏ
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 px-2">
+                    <h4 className="font-bold text-lg text-gray-900 group-hover:text-[#C8956C] transition-colors line-clamp-2">
+                      {product.name}
+                    </h4>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-black text-[#C8956C]">
+                        {formatPrice(product.price)}đ
+                      </span>
+                      <div className="text-xs font-bold text-gray-400">10 GÓI/TÚI</div>
                     </div>
                   </div>
                 </Link>
@@ -499,25 +573,25 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Nguyễn Minh Anh",
-                role: "Khách hàng thân thiết",
+                name: "Ngọc Anh",
+                role: "Sinh viên",
                 avatar: "https://i.pravatar.cc/150?img=1",
                 rating: 5,
-                comment: "Mì ở đây ngon tuyệt vời! Đặc biệt là mì Hàn Quốc, vị đậm đà đúng chuẩn. Giao hàng nhanh, đóng gói cẩn thận. Sẽ ủng hộ tiếp!"
+                comment: "Mình thích nhất là mì miền Trung, vị đậm và hơi cay nhẹ, ăn rất cuốn. Điểm hay là mỗi loại mì có một hương vị khác nhau nên thử rất thú vị."
               },
               {
-                name: "Trần Văn Nam",
-                role: "Dân văn phòng",
-                avatar: "https://i.pravatar.cc/150?img=12",
-                rating: 5,
-                comment: "Mình thích nhất là dịch vụ giao hàng siêu nhanh. Đặt sáng chiều đã có. Mì đa dạng lắm, từ bình dân đến cao cấp đều có."
-              },
-              {
-                name: "Lê Thị Hương",
-                role: "Sinh viên",
+                name: "Lan Chi",
+                role: "Food Blogger",
                 avatar: "https://i.pravatar.cc/150?img=5",
                 rating: 5,
-                comment: "Giá cả hợp lý, có nhiều combo tiết kiệm cho sinh viên. Tư vấn nhiệt tình, giao hàng đúng hẹn. Rất hài lòng!"
+                comment: "Mình khá bất ngờ vì mì gói nhưng hương vị rất rõ đặc trưng vùng miền. Packaging cũng đẹp, nhìn khá cao cấp."
+              },
+              {
+                name: "Lan Chi",
+                role: "Food Blogger",
+                avatar: "https://i.pravatar.cc/150?img=5",
+                rating: 5,
+                comment: "3 loại mì giống như một chuyến du lịch ẩm thực mini vậy. Mỗi lần ăn thử một vị khác nhau rất thú vị."
               }
             ].map((review, idx) => (
               <ScrollReveal
@@ -581,7 +655,7 @@ export default function Home() {
 
               <ul className="space-y-4">
                 {[
-                  "Chọn lọc nguyên liệu đạt chuẩn quốc tế",
+                  "Chọn lọc nguyên liệu đạt chuẩn",
                   "Sản xuất trong môi trường vô trùng",
                   "Kiểm định chất lượng đa tầng",
                   "Đóng gói bảo quản hiện đại"

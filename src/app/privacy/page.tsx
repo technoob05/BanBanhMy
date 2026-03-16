@@ -4,7 +4,7 @@ export default function PrivacyPage() {
             <h1 className="text-4xl font-bold mb-8">Chính Sách Bảo Mật</h1>
             <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
                 <p>Cập nhật lần cuối: 01/01/2024</p>
-                <p>MìMart cam kết bảo mật thông tin của khách hàng. Chúng tôi chỉ sử dụng thông tin của bạn để xử lý đơn hàng và cải thiện trải nghiệm mua sắm.</p>
+                <p>Noodliverse cam kết bảo mật thông tin của khách hàng. Chúng tôi chỉ sử dụng thông tin của bạn để xử lý đơn hàng và cải thiện trải nghiệm mua sắm.</p>
 
                 <h3 className="text-xl font-bold text-gray-900 mt-6">1. Thu thập thông tin</h3>
                 <p>Chúng tôi thu thập tên, số điện thoại, địa chỉ và email khi bạn đặt hàng.</p>
