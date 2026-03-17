@@ -58,12 +58,12 @@ export function Header() {
             <div className="container px-4 md:px-6 flex items-center justify-between h-20">
                 {/* Logo */}
                 <Link href="/" className="flex items-center group relative z-50">
-                    <div className="relative h-16 md:h-20 w-16 md:w-20 transition-all duration-300">
+                    <div className="relative h-20 md:h-24 w-20 md:w-24 transition-all duration-300">
                         <Image 
                             src="/images/noodliverse/logo-processed.png" 
                             alt="Noodliverse Logo" 
                             fill
-                            className="object-contain scale-125" 
+                            className="object-contain scale-[1.35]" 
                             priority
                         />
                     </div>

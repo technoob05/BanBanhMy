@@ -132,10 +132,10 @@ export default function Home() {
               className="relative w-full h-full"
             >
                 <Image
-                src="/images/noodliverse/Gemini_Generated_Image_6ydbgw6ydbgw6ydb.png"
+                src="/images/noodliverse/hero-1.png"
                 alt="Premium Noodles"
                 fill
-                className="object-contain drop-shadow-2xl scale-125"
+                className="object-contain drop-shadow-2xl scale-110"
                 priority
               />
             </motion.div>
@@ -271,7 +271,7 @@ export default function Home() {
               className="order-1 lg:order-2 relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
             >
               <Image
-                src="/images/noodliverse/Gemini_Generated_Image_so6raaso6raaso6r.png"
+                src="/images/noodliverse/hero-2.png"
                 alt="Quality Noodles"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"
@@ -287,7 +287,7 @@ export default function Home() {
               className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
             >
               <Image
-                src="/images/noodliverse/Gemini_Generated_Image_l5mjlll5mjlll5mj.png"
+                src="/images/noodliverse/hero-3.png"
                 alt="Rich Sauce"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"

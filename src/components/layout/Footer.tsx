@@ -82,7 +82,7 @@ export function Footer() {
                     {/* Brand - Wider */}
                     <div className="lg:col-span-4">
                         <Link href="/" className="inline-flex items-center mb-6">
-                            <div className="relative h-20 w-20">
+                            <div className="relative h-24 w-24">
                                 <Image 
                                     src="/images/noodliverse/logo-processed.png" 
                                     alt="Noodliverse Logo" 
