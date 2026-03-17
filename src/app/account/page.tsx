@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Package, MapPin, Settings, ChevronRight, LogOut, ShoppingBag, CreditCard, Save, Calendar, Phone, Mail, User2 } from "lucide-react";
+import { User2, Package, MapPin, CreditCard, Settings, ChevronRight, LogOut, ShoppingBag, User, Mail, Phone, Calendar, Camera, Save, X } from "lucide-react";
 import Link from "next/link";
 import { useStore } from "@/lib/store";
 import { useRouter } from "next/navigation";
@@ -103,20 +103,24 @@ export default function AccountPage() {
                         </div>
 
                         {/* Navigation Menu */}
-                        <div className="bg-white rounded-[2.5rem] shadow-xl shadow-gray-200/50 border border-gray-100 divide-y divide-gray-50 overflow-hidden">
-                            {menuItems.map((item, idx) => (
+                        <div className="bg-white rounded-[2.5rem] shadow-xl shadow-gray-200/50 border border-gray-100 divide-y divide-gray-50 overflow-hidden sticky top-24">
+                            {[
+                                { icon: ShoppingBag, label: "Đơn hàng của tôi", href: "#orders" },
+                                { icon: User2, label: "Thông tin cá nhân", href: "#profile" },
+                                { icon: MapPin, label: "Địa chỉ nhận hàng", href: "#profile" },
+                                { icon: CreditCard, label: "Phương thức thanh toán", href: "#profile" },
+                            ].map((item, idx) => (
                                 <Link 
                                     key={idx} 
                                     href={item.href}
+                                    scroll={true}
                                     className="flex items-center justify-between p-5 hover:bg-gray-50 transition-colors group"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className="p-3 bg-gray-100 rounded-2xl group-hover:bg-[#C8956C]/10 group-hover:text-[#C8956C] transition-colors">
                                             <item.icon className="w-5 h-5" />
                                         </div>
-                                        <div>
-                                            <p className="font-black text-gray-900 text-sm">{item.label}</p>
-                                        </div>
+                                        <p className="font-black text-gray-900 text-sm">{item.label}</p>
                                     </div>
                                     <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-[#C8956C] transition-all group-hover:translate-x-1" />
                                 </Link>
@@ -127,19 +131,23 @@ export default function AccountPage() {
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-8">
                         {/* Personal Information Section */}
-                        <section id="profile" className="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-gray-200/50 border border-gray-100">
+                        <section id="profile" className="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-gray-200/50 border border-gray-100 scroll-mt-28">
                             <div className="flex justify-between items-center mb-8">
                                 <h2 className="text-xl font-black text-gray-900 flex items-center gap-2">
                                     <User2 className="w-6 h-6 text-[#C8956C]" />
                                     Thông Tin Cá Nhân
                                 </h2>
-                                {!isEditing && (
+                                {!isEditing ? (
                                     <button 
                                         onClick={() => setIsEditing(true)}
-                                        className="text-sm font-bold text-[#C8956C] hover:underline"
+                                        className="px-4 py-2 bg-[#C8956C]/10 text-[#C8956C] rounded-xl text-sm font-black hover:bg-[#C8956C] hover:text-white transition-all"
                                     >
-                                        Chỉnh sửa
+                                        Chỉnh sửa thông tin
                                     </button>
+                                ) : (
+                                    <span className="text-[10px] font-black text-orange-500 uppercase tracking-widest animate-pulse">
+                                        Đang chỉnh sửa...
+                                    </span>
                                 )}
                             </div>
 
@@ -153,8 +161,11 @@ export default function AccountPage() {
                                             type="text" 
                                             disabled={!isEditing}
                                             value={formData.name}
+                                            placeholder="Nhập họ và tên..."
                                             onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                            className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 disabled:opacity-60 font-bold"
+                                            className={`w-full px-5 py-4 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 transition-all font-bold ${
+                                                isEditing ? 'bg-white border-[#C8956C]' : 'bg-gray-50 border-gray-100 disabled:opacity-60'
+                                            }`}
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -175,10 +186,12 @@ export default function AccountPage() {
                                         <input 
                                             type="tel" 
                                             disabled={!isEditing}
-                                            placeholder="Chưa cập nhật"
                                             value={formData.phone}
+                                            placeholder="Nhập số điện thoại..."
                                             onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                                            className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 disabled:opacity-60 font-bold"
+                                            className={`w-full px-5 py-4 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 transition-all font-bold ${
+                                                isEditing ? 'bg-white border-[#C8956C]' : 'bg-gray-50 border-gray-100 disabled:opacity-60'
+                                            }`}
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -190,7 +203,9 @@ export default function AccountPage() {
                                             disabled={!isEditing}
                                             value={formData.birthday}
                                             onChange={(e) => setFormData({...formData, birthday: e.target.value})}
-                                            className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 disabled:opacity-60 font-bold"
+                                            className={`w-full px-5 py-4 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 transition-all font-bold ${
+                                                isEditing ? 'bg-white border-[#C8956C]' : 'bg-gray-50 border-gray-100 disabled:opacity-60'
+                                            }`}
                                         />
                                     </div>
                                 </div>
@@ -230,7 +245,9 @@ export default function AccountPage() {
                                         placeholder="Chưa có địa chỉ"
                                         value={formData.address}
                                         onChange={(e) => setFormData({...formData, address: e.target.value})}
-                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 disabled:opacity-60 font-bold resize-none"
+                                        className={`w-full px-5 py-4 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C8956C]/20 transition-all font-bold resize-none ${
+                                            isEditing ? 'bg-white border-[#C8956C]' : 'bg-gray-50 border-gray-100 disabled:opacity-60'
+                                        }`}
                                     />
                                 </div>
 
@@ -260,7 +277,7 @@ export default function AccountPage() {
                         </section>
 
                         {/* Recent Orders Section */}
-                        <div id="orders">
+                        <div id="orders" className="scroll-mt-28">
                             <div className="flex justify-between items-end mb-6 px-4">
                                 <h2 className="text-xl font-black text-gray-900 flex items-center gap-2">
                                     <ShoppingBag className="w-6 h-6 text-[#C8956C]" />

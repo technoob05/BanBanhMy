@@ -14,6 +14,7 @@ export default function CartPage() {
     const [isCheckingOut, setIsCheckingOut] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const router = useRouter();
+    const [paymentMethod, setPaymentMethod] = useState<'cod' | 'digital'>('cod');
 
     const totalPrice = getTotalPrice();
     const shippingFee = totalPrice > 200000 ? 0 : 30000;
@@ -30,7 +31,7 @@ export default function CartPage() {
         // Simulate processing
         await new Promise(resolve => setTimeout(resolve, 2000));
         
-        const order = placeOrder();
+        const order = placeOrder(paymentMethod);
         
         if (order) {
             setIsSuccess(true);
@@ -196,10 +197,46 @@ export default function CartPage() {
                                     )}
                                 </div>
 
-                                <div className="border-t border-stone-100 pt-4 mb-8">
-                                    <div className="flex justify-between font-bold text-xl">
+                                <div className="border-t border-stone-100 pt-4 mb-6">
+                                    <div className="flex justify-between font-bold text-xl mb-4">
                                         <span>Tổng cộng</span>
                                         <span className="text-[#C8956C]">{finalTotal.toLocaleString()}đ</span>
+                                    </div>
+
+                                    {/* Payment Method Selector */}
+                                    <div className="space-y-4">
+                                        <p className="text-sm font-black text-gray-900 uppercase tracking-widest">Phương thức thanh toán</p>
+                                        <div className="grid grid-cols-1 gap-3">
+                                            <button 
+                                                onClick={() => setPaymentMethod('cod')}
+                                                className={`flex items-center gap-3 p-4 rounded-2xl border-2 transition-all text-left ${
+                                                    paymentMethod === 'cod' ? 'border-gray-900 bg-gray-900 text-white shadow-lg' : 'border-gray-100 hover:border-gray-200 text-gray-600'
+                                                }`}
+                                            >
+                                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'cod' ? 'border-white' : 'border-gray-300'}`}>
+                                                    {paymentMethod === 'cod' && <div className="w-2 h-2 bg-white rounded-full" />}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <p className="font-bold text-sm">Thanh toán khi nhận hàng (COD)</p>
+                                                    <p className={`text-[10px] ${paymentMethod === 'cod' ? 'text-gray-400' : 'text-gray-500'}`}>Tiền mặt hoặc chuyển khoản khi nhận mì</p>
+                                                </div>
+                                            </button>
+
+                                            <button 
+                                                onClick={() => setPaymentMethod('digital')}
+                                                className={`flex items-center gap-3 p-4 rounded-2xl border-2 transition-all text-left ${
+                                                    paymentMethod === 'digital' ? 'border-gray-900 bg-gray-900 text-white shadow-lg' : 'border-gray-100 hover:border-gray-200 text-gray-600'
+                                                }`}
+                                            >
+                                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'digital' ? 'border-white' : 'border-gray-300'}`}>
+                                                    {paymentMethod === 'digital' && <div className="w-2 h-2 bg-white rounded-full" />}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <p className="font-bold text-sm">Ví điện tử / Thẻ nội địa</p>
+                                                    <p className={`text-[10px] ${paymentMethod === 'digital' ? 'text-gray-400' : 'text-gray-500'}`}>Hỗ trợ MoMo, ZaloPay, Thẻ ATM</p>
+                                                </div>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 

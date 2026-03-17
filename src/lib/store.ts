@@ -29,6 +29,7 @@ export interface Order {
     total: number;
     status: 'pending' | 'processing' | 'shipping' | 'delivered';
     date: string;
+    paymentMethod?: 'cod' | 'digital';
     trackingSteps: {
         status: string;
         time: string;
@@ -56,7 +57,7 @@ interface AuthStore {
 
 interface OrderStore {
     orders: Order[];
-    placeOrder: () => Order | null;
+    placeOrder: (paymentMethod?: Order['paymentMethod']) => Order | null;
     updateOrderStatus: (orderId: string, status: Order['status']) => void;
 }
 
@@ -113,7 +114,7 @@ export const useStore = create<CombinedStore>()(
 
             // Order implementation
             orders: [],
-            placeOrder: () => {
+            placeOrder: (paymentMethod) => {
                 const { items, getTotalPrice, clearCart } = get();
                 if (items.length === 0) return null;
 
@@ -123,6 +124,7 @@ export const useStore = create<CombinedStore>()(
                     total: getTotalPrice(),
                     status: 'pending',
                     date: new Date().toISOString(),
+                    paymentMethod: paymentMethod || 'cod',
                     trackingSteps: [
                         { status: 'pending', time: new Date().toISOString(), description: 'Đơn hàng đã được tiếp nhận', completed: true },
                         { status: 'processing', time: '', description: 'Đang chuẩn bị hàng', completed: false },
