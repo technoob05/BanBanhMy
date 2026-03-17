@@ -16,17 +16,22 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Prompt optimized for Fridge Scanning
-        const prompt = `Bạn là một đầu bếp AI thông minh (Vision Chef). Hãy nhìn vào bức ảnh này (chụp tủ lạnh hoặc nguyên liệu trên bàn).
+        // Prompt optimized for Fridge Scanning with Noodliverse context
+const prompt = `Bạn là một đầu bếp AI thông minh (Vision Chef) của Noodliverse. Hãy nhìn vào bức ảnh này (chụp tủ lạnh hoặc nguyên liệu trên bàn).
 1. Liệt kê các nguyên liệu chính bạn nhìn thấy.
-2. Gợi ý 3 món ăn ngon có thể nấu từ các nguyên liệu đó.
-3. Trả về kết quả CHỈ dưới dạng JSON hợp lệ (không có markdown code block) theo cấu trúc sau:
+2. Gợi ý 1 loại mì cụ thể của Noodliverse phù hợp nhất để nấu với các nguyên liệu này. Chỉ chọn một trong 3 loại: 
+   - "Mì Gà Thanh" (Hương vị Bắc, thanh nhẹ)
+   - "Mì Bò Cay" (Hương vị Trung, đậm đà, cay)
+   - "Mì Kem Sữa Dừa" (Hương vị Nam, béo ngậy, ngọt dịu)
+3. Gợi ý 3 món ăn sáng tạo sử dụng loại mì đã chọn và các nguyên liệu có sẵn.
+4. Trả về kết quả CHỈ dưới dạng JSON hợp lệ theo cấu trúc sau:
 {
   "ingredients": ["nguyên liệu 1", "nguyên liệu 2", ...],
+  "recommendedProduct": "Tên loại mì đã chọn",
   "suggestions": [
-    { "name": "Món A", "description": "Mô tả ngắn gọn cách làm hoặc hương vị." },
-    { "name": "Món B", "description": "..." },
-    { "name": "Món C", "description": "..." }
+    { "name": "Tên món ăn sáng tạo", "description": "Mô tả ngắn gọn cách làm, nhấn mạnh sự kết hợp với loại mì đã chọn." },
+    { "name": "Món 2", "description": "..." },
+    { "name": "Món 3", "description": "..." }
   ]
 }`;
 

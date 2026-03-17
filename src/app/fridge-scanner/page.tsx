@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Camera, Upload, RefreshCw, ChefHat, Loader2, Image as ImageIcon, X, Sparkles, ChevronUp, ScanLine, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 // --- Types ---
 interface Suggestion {
@@ -14,6 +15,7 @@ interface Suggestion {
 
 interface AnalysisResult {
     ingredients: string[];
+    recommendedProduct?: string;
     suggestions: Suggestion[];
     rawText?: string;
 }
@@ -358,6 +360,30 @@ export default function VisionChefPage() {
                                     </div>
 
                                     <div>
+                                        <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Gợi ý sản phẩm</h3>
+                                        {result.recommendedProduct && (
+                                            <div className="mb-8 p-6 bg-[#C8956C]/10 rounded-2xl border-2 border-[#C8956C]/20 flex items-center gap-6">
+                                                <div className="w-24 h-24 bg-white rounded-xl shadow-inner flex items-center justify-center p-2">
+                                                    <Image 
+                                                        src={result.recommendedProduct.includes("Gà") ? "/images/noodliverse/mi-ga-thanh-le.png" : 
+                                                             result.recommendedProduct.includes("Bò") ? "/images/noodliverse/mi-bo-cay-le.png" :
+                                                             "/images/noodliverse/mi-kem-sua-dua-le.png"}
+                                                        alt={result.recommendedProduct}
+                                                        width={80}
+                                                        height={80}
+                                                        className="object-contain"
+                                                    />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <div className="text-sm font-bold text-[#A67C52] mb-1">GHÉP CẶP HOÀN HẢO</div>
+                                                    <h4 className="text-xl font-black text-stone-900 mb-2">{result.recommendedProduct}</h4>
+                                                    <button className="px-4 py-2 bg-stone-900 text-white text-xs font-bold rounded-full hover:bg-stone-800 transition-all">
+                                                        Mua ngay
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+
                                         <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Món Ngon Cho Bạn</h3>
                                         <div className="grid gap-4">
                                             {result.suggestions.map((dish, i) => (
@@ -421,9 +447,33 @@ export default function VisionChefPage() {
                                 </div>
                             </div>
 
+                            {/* Recommended Product Section */}
+                            {result.recommendedProduct && (
+                                <div className="mb-6 p-5 bg-[#C8956C]/10 rounded-2xl border border-[#C8956C]/20">
+                                    <div className="flex items-center gap-4 mb-4">
+                                        <div className="w-20 h-20 bg-white rounded-xl shadow-inner flex items-center justify-center p-2">
+                                            <img 
+                                                src={result.recommendedProduct.includes("Gà") ? "/images/noodliverse/mi-ga-thanh-le.png" : 
+                                                     result.recommendedProduct.includes("Bò") ? "/images/noodliverse/mi-bo-cay-le.png" :
+                                                     "/images/noodliverse/mi-kem-sua-dua-le.png"}
+                                                alt={result.recommendedProduct}
+                                                className="w-full h-full object-contain"
+                                            />
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-bold text-[#A67C52] uppercase mb-1">Ghép cặp hoàn hảo</div>
+                                            <h4 className="text-lg font-black text-stone-900">{result.recommendedProduct}</h4>
+                                        </div>
+                                    </div>
+                                    <button className="w-full py-3 bg-stone-900 text-white rounded-xl font-bold text-sm shadow-lg">
+                                        Mua Ngay
+                                    </button>
+                                </div>
+                            )}
+
                             {/* Recipes Section */}
                             <div>
-                                <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Gợi Ý</h3>
+                                <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Gợi Ý Món Ăn</h3>
                                 <div className="space-y-4">
                                     {result.suggestions.map((dish, i) => (
                                         <div key={i} className="bg-white rounded-2xl border border-stone-200 shadow-sm p-5">

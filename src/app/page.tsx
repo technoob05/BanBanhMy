@@ -131,11 +131,11 @@ export default function Home() {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="relative w-full h-full"
             >
-              <Image
-                src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200&auto=format&fit=crop"
+                <Image
+                src="/images/noodliverse/Gemini_Generated_Image_6ydbgw6ydbgw6ydb.png"
                 alt="Premium Noodles"
                 fill
-                className="object-contain drop-shadow-2xl"
+                className="object-contain drop-shadow-2xl scale-125"
                 priority
               />
             </motion.div>
@@ -271,7 +271,7 @@ export default function Home() {
               className="order-1 lg:order-2 relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
             >
               <Image
-                src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=1200"
+                src="/images/noodliverse/Gemini_Generated_Image_so6raaso6raaso6r.png"
                 alt="Quality Noodles"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"
@@ -287,7 +287,7 @@ export default function Home() {
               className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
             >
               <Image
-                src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1200"
+                src="/images/noodliverse/Gemini_Generated_Image_l5mjlll5mjlll5mj.png"
                 alt="Rich Sauce"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"
@@ -574,10 +574,17 @@ export default function Home() {
             {[
               {
                 name: "Ngọc Anh",
-                role: "Sinh viên",
-                avatar: "https://i.pravatar.cc/150?img=1",
+                role: "Chuyên gia ẩm thực",
+                avatar: "https://i.pravatar.cc/150?img=32",
                 rating: 5,
                 comment: "Mình thích nhất là mì miền Trung, vị đậm và hơi cay nhẹ, ăn rất cuốn. Điểm hay là mỗi loại mì có một hương vị khác nhau nên thử rất thú vị."
+              },
+              {
+                name: "Quốc Bảo",
+                role: "Nội trợ",
+                avatar: "https://i.pravatar.cc/150?img=12",
+                rating: 5,
+                comment: "Gia đình mình rất thích mì Noodliverse. Sợi mì dai ngon, nước súp thì đậm đà như nấu ở nhà vậy. Tiết kiệm thời gian mà vẫn đảm bảo bữa ăn ngon."
               },
               {
                 name: "Lan Chi",
@@ -585,13 +592,6 @@ export default function Home() {
                 avatar: "https://i.pravatar.cc/150?img=5",
                 rating: 5,
                 comment: "Mình khá bất ngờ vì mì gói nhưng hương vị rất rõ đặc trưng vùng miền. Packaging cũng đẹp, nhìn khá cao cấp."
-              },
-              {
-                name: "Lan Chi",
-                role: "Food Blogger",
-                avatar: "https://i.pravatar.cc/150?img=5",
-                rating: 5,
-                comment: "3 loại mì giống như một chuyến du lịch ẩm thực mini vậy. Mỗi lần ăn thử một vị khác nhau rất thú vị."
               }
             ].map((review, idx) => (
               <ScrollReveal
