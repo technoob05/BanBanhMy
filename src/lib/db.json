@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": "1773711790226",
+      "email": "test@example.com",
+      "password": "password",
+      "name": "Test User",
+      "address": "",
+      "orderHistory": []
+    },
+    {
+      "id": "1773714960167",
+      "email": "duyminh12122005@gmail.com",
+      "password": "123456",
+      "name": "Duy Minh",
+      "address": "",
+      "orderHistory": []
+    }
+  ],
+  "orders": []
+}

@@ -7,8 +7,9 @@ import { useState, useEffect } from "react";
 import {
     Menu, X, Search, ShoppingCart, User, ChefHat, Home, Package, BookOpen, Info, Mail
 } from "lucide-react";
-import { useCartStore } from "@/lib/store";
-import { LoginModal } from "../features/LoginModal";
+import { useStore } from "@/lib/store";
+import { AuthModal } from "./AuthModal";
+import { User as UserIcon, LogOut, Package as PackageIcon } from "lucide-react";
 
 const navLinks = [
     { href: "/", label: "Trang Chủ", icon: Home },
@@ -21,8 +22,9 @@ const navLinks = [
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoginOpen, setIsLoginOpen] = useState(false);
-    const cartItems = useCartStore((state) => state.items);
+    const [isAuthOpen, setIsAuthOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const { user, logout, items: cartItems } = useStore();
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -35,7 +37,7 @@ export function Header() {
 
     // Lock body scroll when menu is open
     useEffect(() => {
-        if (isOpen || isLoginOpen) {
+        if (isOpen || isAuthOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
@@ -43,30 +45,27 @@ export function Header() {
         return () => {
             document.body.style.overflow = "unset";
         };
-    }, [isOpen, isLoginOpen]);
+    }, [isOpen, isAuthOpen]);
 
     return (
         <>
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100"
-                : "bg-white/50 backdrop-blur-md border-b border-white/20"
+                ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-gray-100"
+                : "bg-white/20 backdrop-blur-xl border-b border-white/20"
                 }`}
         >
             <div className="container px-4 md:px-6 flex items-center justify-between h-20">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-3 group relative z-50">
-                    <div className={`p-0 overflow-hidden rounded-xl transition-all duration-300 ${scrolled ? "bg-white" : "bg-white"
-                        }`}>
-                        <Image src="/images/noodliverse/Logo.jpg" alt="Noodliverse Logo" width={48} height={48} className="object-cover" />
-                    </div>
-                    <div className="flex flex-col -space-y-1">
-                        <span className="text-2xl font-black tracking-tight text-gray-900">
-                            Noodli<span className="text-[#C8956C]">verse</span>
-                        </span>
-                        <span className="text-[10px] text-gray-500 font-semibold tracking-wider uppercase">
-                            Hương Vị Mì Ba Miền
-                        </span>
+                <Link href="/" className="flex items-center group relative z-50">
+                    <div className="relative h-16 md:h-20 w-16 md:w-20 transition-all duration-300">
+                        <Image 
+                            src="/images/noodliverse/logo-processed.png" 
+                            alt="Noodliverse Logo" 
+                            fill
+                            className="object-contain scale-125" 
+                            priority
+                        />
                     </div>
                 </Link>
 
@@ -98,16 +97,55 @@ export function Header() {
                         <Search className="w-5 h-5" />
                     </button>
 
-                    <button
-                        onClick={() => setIsLoginOpen(true)}
-                        className={`p-2.5 rounded-xl transition-all ${scrolled
-                            ? "hover:bg-gray-100 text-gray-700"
-                            : "hover:bg-white/80 text-gray-800"
-                            }`}
-                        aria-label="User Profile"
-                    >
-                        <User className="w-5 h-5" />
-                    </button>
+                    {user ? (
+                        <div className="relative">
+                            <button 
+                                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                                className={`p-2.5 rounded-xl transition-all flex items-center gap-2 ${scrolled
+                                    ? "hover:bg-gray-100 text-[#C8956C]"
+                                    : "hover:bg-white/80 text-[#C8956C]"
+                                    }`}
+                            >
+                                <UserIcon className="w-5 h-5" />
+                                <span className="hidden md:block font-bold text-sm text-gray-900">{user.name}</span>
+                            </button>
+
+                            <AnimatePresence>
+                                {isProfileOpen && (
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl py-2 z-[60]"
+                                    >
+                                        <Link href="/account" onClick={() => setIsProfileOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-gray-700 font-bold text-sm">
+                                            <UserIcon className="w-4 h-4" /> Tài khoản
+                                        </Link>
+                                        <Link href="/order-tracking" onClick={() => setIsProfileOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-gray-700 font-bold text-sm">
+                                            <PackageIcon className="w-4 h-4" /> Đơn hàng
+                                        </Link>
+                                        <button 
+                                            onClick={() => { logout(); setIsProfileOpen(false); }}
+                                            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-50 text-red-600 font-bold text-sm border-t border-gray-50"
+                                        >
+                                            <LogOut className="w-4 h-4" /> Đăng xuất
+                                        </button>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={() => setIsAuthOpen(true)}
+                            className={`p-2.5 rounded-xl transition-all ${scrolled
+                                ? "hover:bg-gray-100 text-gray-700"
+                                : "hover:bg-white/80 text-gray-800"
+                                }`}
+                            aria-label="User Login"
+                        >
+                            <UserIcon className="w-5 h-5" />
+                        </button>
+                    )}
 
                     <Link
                         href="/cart"
@@ -150,13 +188,10 @@ export function Header() {
                     >
                         {/* Mobile Header */}
                         <div className="flex items-center justify-between p-4 border-b border-gray-100">
-                            <div className="flex items-center gap-3">
-                                <div className="p-0 overflow-hidden bg-white rounded-xl">
-                                    <Image src="/images/noodliverse/Logo.jpg" alt="Noodliverse Logo" width={40} height={40} />
+                            <div className="flex items-center">
+                                <div className="relative h-12 w-12">
+                                    <Image src="/images/noodliverse/logo-processed.png" alt="Noodliverse Logo" fill className="object-contain" />
                                 </div>
-                                <span className="text-2xl font-black text-gray-900">
-                                    Noodli<span className="text-[#C8956C]">verse</span>
-                                </span>
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
@@ -205,9 +240,9 @@ export function Header() {
             </AnimatePresence>
         </header>
 
-        <LoginModal 
-            isOpen={isLoginOpen} 
-            onClose={() => setIsLoginOpen(false)} 
+        <AuthModal 
+            isOpen={isAuthOpen} 
+            onClose={() => setIsAuthOpen(false)} 
         />
         </>
     );

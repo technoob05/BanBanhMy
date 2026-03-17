@@ -13,10 +13,9 @@ import {
 
 const footerLinks = {
     products: [
-        { label: "Mì Gói", href: "/products?category=mi-goi" },
-        { label: "Mì Ly", href: "/products?category=mi-ly" },
-        { label: "Mì Tô", href: "/products?category=mi-to" },
-        { label: "Mì Hàn Quốc", href: "/products?category=mi-han-quoc" },
+        { label: "Mì Gà Thanh", href: "/products/p1" },
+        { label: "Mì Bò Cay", href: "/products/p2" },
+        { label: "Mì Kem Sữa Dừa", href: "/products/p3" },
     ],
     company: [
         { label: "Về Chúng Tôi", href: "/about" },
@@ -82,17 +81,14 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
                     {/* Brand - Wider */}
                     <div className="lg:col-span-4">
-                        <Link href="/" className="inline-flex items-center gap-3 mb-6">
-                            <div className="w-12 h-12 overflow-hidden bg-white border border-gray-700 rounded-xl flex items-center justify-center">
-                                <Image src="/images/noodliverse/Logo.jpg" alt="Noodliverse Logo" width={48} height={48} />
-                            </div>
-                            <div className="flex flex-col -space-y-1">
-                                <span className="text-2xl font-black">
-                                    Noodli<span className="text-[#C8956C]">verse</span>
-                                </span>
-                                <span className="text-xs text-gray-400 font-semibold tracking-wider">
-                                    HƯƠNG VỊ MÌ BA MIỀN
-                                </span>
+                        <Link href="/" className="inline-flex items-center mb-6">
+                            <div className="relative h-20 w-20">
+                                <Image 
+                                    src="/images/noodliverse/logo-processed.png" 
+                                    alt="Noodliverse Logo" 
+                                    fill 
+                                    className="object-contain opacity-90 hover:opacity-100 transition-opacity scale-125"
+                                />
                             </div>
                         </Link>
                         <p className="text-gray-400 mb-6 leading-relaxed">
@@ -197,19 +193,24 @@ export function Footer() {
 
             {/* Certification and Payment Methods */}
             <div className="border-t border-gray-800 bg-gray-900/50">
-                <div className="container py-8 flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div className="flex flex-wrap justify-center gap-6 opacity-70 hover:opacity-100 transition-opacity">
-                        <Image src="/images/noodliverse/Gemini_Generated_Image_6ydbgw6ydbgw6ydb.png" alt="Certification 1" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
-                        <Image src="/images/noodliverse/Gemini_Generated_Image_l5mjlll5mjlll5mj.png" alt="Certification 2" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
-                        <Image src="/images/noodliverse/Gemini_Generated_Image_gg10k3gg10k3gg10.png" alt="Certification 3" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
-                        <Image src="/images/noodliverse/Gemini_Generated_Image_so6raaso6raaso6r.png" alt="Certification 4" width={60} height={60} className="grayscale hover:grayscale-0 transition-all" />
+                <div className="container py-8">
+                    <div className="text-center mb-6">
+                        <span className="text-sm font-bold text-gray-400 uppercase tracking-[0.2em]">Các chứng nhận của Noodliverse</span>
                     </div>
-                    <div className="flex items-center gap-4">
-                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Thanh Toán:</span>
-                        <div className="flex gap-3">
-                             <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">MOMO</div>
-                             <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">VNPAY</div>
-                             <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">VISA</div>
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                        <div className="flex flex-wrap justify-center gap-6">
+                            <Image src="/images/noodliverse/Gemini_Generated_Image_6ydbgw6ydbgw6ydb.png" alt="Certification 1" width={60} height={60} className="hover:scale-110 transition-all" />
+                            <Image src="/images/noodliverse/Gemini_Generated_Image_l5mjlll5mjlll5mj.png" alt="Certification 2" width={60} height={60} className="hover:scale-110 transition-all" />
+                            <Image src="/images/noodliverse/Gemini_Generated_Image_gg10k3gg10k3gg10.png" alt="Certification 3" width={60} height={60} className="hover:scale-110 transition-all" />
+                            <Image src="/images/noodliverse/Gemini_Generated_Image_so6raaso6raaso6r.png" alt="Certification 4" width={60} height={60} className="hover:scale-110 transition-all" />
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Thanh Toán:</span>
+                            <div className="flex gap-3">
+                                 <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">MOMO</div>
+                                 <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">VNPAY</div>
+                                 <div className="w-10 h-6 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold">VISA</div>
+                            </div>
                         </div>
                     </div>
                 </div>

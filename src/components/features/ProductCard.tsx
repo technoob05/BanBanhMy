@@ -46,46 +46,48 @@ export function ProductCard({ product }: ProductCardProps) {
                 className="group bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
             >
                 {/* Image Container */}
-                <div className="relative aspect-square overflow-hidden bg-gray-50">
+                <div className="relative aspect-square overflow-hidden bg-gray-50 flex items-center justify-center">
                     <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                        className="object-contain p-4 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-2"
                     />
 
                     {/* Badges */}
-                    <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
+                    <div className="absolute top-3 left-3 right-3 flex justify-between items-start pointer-events-none">
                         <div className="flex flex-col gap-2">
                             {product.spicyLevel >= 4 && (
-                                <span className="bg-gray-900 text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg">
+                                <motion.span 
+                                    whileHover={{ scale: 1.1 }}
+                                    className="bg-gray-900 text-white text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg"
+                                >
                                     <Flame className="w-3 h-3 text-orange-400" />
-                                    CỰC CAY {product.spicyLevel}/7
-                                </span>
+                                    {product.spicyLevel}/7 SPICY
+                                </motion.span>
                             )}
                             {product.rating >= 4.5 && (
-                                <span className="bg-[#C8956C] text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg">
+                                <motion.span 
+                                    whileHover={{ scale: 1.1 }}
+                                    className="bg-[#C8956C] text-white text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg"
+                                >
                                     <Award className="w-3 h-3" />
-                                    BÁN CHẠY
-                                </span>
+                                    BEST SELLER
+                                </motion.span>
                             )}
                         </div>
-                        <span className="bg-white/95 backdrop-blur-sm text-gray-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                            {getCategoryLabel(product.category)}
-                        </span>
                     </div>
 
-                    {/* Quick Action Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                            <button
-                                onClick={handleAddToCart}
-                                className="w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-900 hover:text-white transition-all flex items-center justify-center gap-2 shadow-xl transform hover:scale-105"
-                            >
-                                <ShoppingCart className="w-4 h-4" />
-                                Thêm Vào Giỏ
-                            </button>
-                        </div>
+                    {/* Quick Action - visible on mobile or hover on desktop */}
+                    <div className="absolute bottom-3 left-3 right-3 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300">
+                        <motion.button
+                            onClick={handleAddToCart}
+                            whileTap={{ scale: 0.9 }}
+                            className="w-full bg-white/95 backdrop-blur-md text-gray-900 font-black py-3 rounded-2xl flex items-center justify-center gap-2 shadow-xl border border-gray-100 active:bg-gray-900 active:text-white transition-colors"
+                        >
+                            <ShoppingCart className="w-4 h-4" />
+                            <span className="text-xs uppercase tracking-widest">Thêm Ngay</span>
+                        </motion.button>
                     </div>
                 </div>
 

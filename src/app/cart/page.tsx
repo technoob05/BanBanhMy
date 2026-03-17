@@ -1,22 +1,107 @@
 "use client";
 
-import { useCartStore } from "@/lib/store";
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
+import { useStore } from "@/lib/store";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import confetti from "canvas-confetti";
 
 export default function CartPage() {
-    const { items, removeItem, updateQuantity, getTotalPrice } = useCartStore();
+    const { items, removeItem, updateQuantity, getTotalPrice, placeOrder, user } = useStore();
+    const [isCheckingOut, setIsCheckingOut] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const router = useRouter();
+
     const totalPrice = getTotalPrice();
     const shippingFee = totalPrice > 200000 ? 0 : 30000;
     const finalTotal = totalPrice + (items.length > 0 ? shippingFee : 0);
 
+    const handleCheckout = async () => {
+        if (!user) {
+            alert("Vui lòng đăng nhập để thanh toán!");
+            return;
+        }
+
+        setIsCheckingOut(true);
+        
+        // Simulate processing
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        const order = placeOrder();
+        
+        if (order) {
+            setIsSuccess(true);
+            
+            // Confetti Explosion 💥
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+            const interval: any = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+            }, 250);
+
+            // Redirect after a while
+            setTimeout(() => {
+                router.push(`/order-tracking?id=${order.id}`);
+            }, 4000);
+        }
+        
+        setIsCheckingOut(false);
+    };
+
+    if (isSuccess) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-white">
+                <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-8"
+                >
+                    <CheckCircle2 className="w-12 h-12 text-green-600" />
+                </motion.div>
+                <motion.h1 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-3xl font-black text-gray-900 mb-2 text-center"
+                >
+                    Đặt Hàng Thành Công!
+                </motion.h1>
+                <motion.p 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-gray-500 mb-12 text-center max-w-sm"
+                >
+                    Đơn hàng của bạn đang được chuẩn bị. Chúng tôi sẽ chuyển bạn đến trang theo dõi ngay bây giờ...
+                </motion.p>
+                <div className="flex gap-4">
+                     <div className="w-2 h-2 bg-[#C8956C] rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+                     <div className="w-2 h-2 bg-[#C8956C] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                     <div className="w-2 h-2 bg-[#C8956C] rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-stone-50 py-28 px-4">
             <div className="container max-w-5xl mx-auto">
-                <h1 className="text-3xl font-bold font-serif mb-8 flex items-center gap-3">
-                    <ShoppingBag className="w-8 h-8 text-amber-600" />
+                <h1 className="text-3xl font-black mb-8 flex items-center gap-3">
+                    <ShoppingBag className="w-8 h-8 text-[#C8956C]" />
                     Giỏ Hàng Của Bạn
                 </h1>
 
@@ -30,7 +115,7 @@ export default function CartPage() {
                         <h2 className="text-2xl font-bold text-stone-800 mb-2">Chưa có gì trong tô!</h2>
                         <p className="text-stone-500 mb-8">Hãy thêm vài gói mì để bữa ăn thêm đậm đà nhé.</p>
                         <Link href="/products">
-                            <button className="btn-primary">
+                            <button className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-bold shadow-xl active:scale-95 transition-transform">
                                 Mua Sắm Ngay
                             </button>
                         </Link>
@@ -60,7 +145,7 @@ export default function CartPage() {
 
                                         <div className="flex-1">
                                             <h3 className="font-bold text-stone-900">{item.name}</h3>
-                                            <p className="text-amber-600 font-bold">{item.price.toLocaleString()}đ</p>
+                                            <p className="text-[#C8956C] font-bold">{item.price.toLocaleString()}đ</p>
                                         </div>
 
                                         <div className="flex items-center gap-3 bg-stone-50 rounded-full px-3 py-1">
@@ -114,15 +199,21 @@ export default function CartPage() {
                                 <div className="border-t border-stone-100 pt-4 mb-8">
                                     <div className="flex justify-between font-bold text-xl">
                                         <span>Tổng cộng</span>
-                                        <span className="text-amber-600">{finalTotal.toLocaleString()}đ</span>
+                                        <span className="text-[#C8956C]">{finalTotal.toLocaleString()}đ</span>
                                     </div>
                                 </div>
 
-                                <Link href="/checkout">
-                                    <button className="w-full btn-primary py-4 flex items-center justify-center gap-2 text-lg shadow-amber-200 shadow-xl">
-                                        Thanh Toán Ngay <ArrowRight className="w-5 h-5" />
-                                    </button>
-                                </Link>
+                                <button 
+                                    onClick={handleCheckout}
+                                    disabled={isCheckingOut}
+                                    className="w-full bg-gray-900 text-white py-4 flex items-center justify-center gap-2 text-lg rounded-2xl shadow-xl active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {isCheckingOut ? (
+                                        <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    ) : (
+                                        <>Thanh Toán Ngay <ArrowRight className="w-5 h-5" /></>
+                                    )}
+                                </button>
 
                                 <p className="text-center text-xs text-stone-400 mt-4">
                                     Đảm bảo chất lượng 100%. Hoàn tiền nếu không hài lòng.

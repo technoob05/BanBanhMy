@@ -566,7 +566,7 @@ export default function Home() {
               Khách Hàng <span className="text-[#C8956C]">Nói Gì</span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Hơn 100,000+ khách hàng hài lòng trên toàn quốc
+              Hơn 30,000+ khách hàng hài lòng trên toàn quốc
             </p>
           </ScrollReveal>
 
