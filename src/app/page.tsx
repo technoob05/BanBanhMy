@@ -15,9 +15,8 @@ export default function Home() {
 
   const stats = [
     { id: 1, number: "3", label: "Loại mì", icon: Utensils },
-    { id: 2, number: "2", label: "Nhà máy", icon: Factory },
-    { id: 3, number: "2", label: "Quốc gia", icon: Globe },
-    { id: 4, number: "2000+", label: "Nhân viên", icon: Users },
+    { id: 2, number: "1", label: "Nhà máy", icon: Factory },
+    { id: 4, number: "100", label: "Nhân viên", icon: Users },
   ];
 
   return (
@@ -197,7 +196,7 @@ export default function Home() {
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {stats.map((stat, idx) => (
               <ScrollReveal
                 key={stat.id}
