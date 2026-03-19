@@ -198,11 +198,25 @@ export function Footer() {
                         <span className="text-sm font-bold text-gray-400 uppercase tracking-[0.2em]">Các chứng nhận của Noodliverse</span>
                     </div>
                     <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-                        <div className="flex flex-wrap justify-center gap-6">
-                            <Image src="/images/noodliverse/Gemini_Generated_Image_6ydbgw6ydbgw6ydb.png" alt="Certification 1" width={60} height={60} className="hover:scale-110 transition-all" />
-                            <Image src="/images/noodliverse/Gemini_Generated_Image_l5mjlll5mjlll5mj.png" alt="Certification 2" width={60} height={60} className="hover:scale-110 transition-all" />
-                            <Image src="/images/noodliverse/Gemini_Generated_Image_gg10k3gg10k3gg10.png" alt="Certification 3" width={60} height={60} className="hover:scale-110 transition-all" />
-                            <Image src="/images/noodliverse/Gemini_Generated_Image_so6raaso6raaso6r.png" alt="Certification 4" width={60} height={60} className="hover:scale-110 transition-all" />
+                        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                            {[
+                                { src: "/images/certification/halal.webp", alt: "Halal" },
+                                { src: "/images/certification/logo-BRCGS.webp", alt: "BRCGS" },
+                                { src: "/images/certification/logo-Gluten-Free.webp", alt: "Gluten Free" },
+                                { src: "/images/certification/logo-HACCP.webp", alt: "HACCP" },
+                                { src: "/images/certification/logo-IFS.webp", alt: "IFS" },
+                                { src: "/images/certification/logo-V-Label.webp", alt: "V-Label" },
+                                { src: "/images/certification/vegetarian.webp", alt: "Vegetarian" }
+                            ].map((cert, idx) => (
+                                <Image 
+                                    key={idx} 
+                                    src={cert.src} 
+                                    alt={cert.alt} 
+                                    width={60} 
+                                    height={60} 
+                                    className="h-12 w-auto object-contain hover:scale-110 transition-all opacity-90 hover:opacity-100" 
+                                />
+                            ))}
                         </div>
                         <div className="flex items-center gap-4">
                             <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Thanh Toán:</span>
